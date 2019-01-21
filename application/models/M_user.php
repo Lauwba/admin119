@@ -21,4 +21,8 @@ class M_user extends CI_Model
 	{
 		return $this->db->get($table)->result();
 	}
+        
+        public function getByTindakan($table1, $table2, $id, $condition){
+            return $this->db->query("SELECT * FROM $table1 INNER JOIN $table2 ON $table1.$id=$table2.$id WHERE $condition")->result();
+        }
 }

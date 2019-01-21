@@ -20,13 +20,15 @@ class Dashboard extends CI_Controller {
         $this->load->view('headfoot/footer');
     }
 
-    function emergency_report() {
+    function report() {
         $this->load->view('headfoot/header');
-        $data['lat'] = "-7.7520206";
-        $data['longi'] = "110.4892787";
-        $this->load->view('dashboard/emergency_page', $data);
+        $this->load->view('dashboard/report');
         $this->load->view('headfoot/footer');
     }
 
+    function emergency_report() {
+        $data['report'] = $this->user->getByTindakan('laporan', 'registrasi', 'nik', 'tindakan=0');
+        $this->load->view('dashboard/emergency_page', $data);
+    }
 
 }

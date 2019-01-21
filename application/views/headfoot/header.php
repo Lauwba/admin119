@@ -29,15 +29,10 @@ and open the template in the editor.
                     </button>
                     <div class="collapse navbar-collapse" id="navbar5">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item" id="dashboard"> <a class="nav-link" href="#dashboard"> <span class="fa fa-home"></span> Dashboard</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('report')?>"> <span class="fa fa-phone"></span> Laporan Emergency</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#"> <span class="fa fa-sticky-note"></span> Log</a> </li>
+                            <li class="nav-item" id="dashboard"> <a class="nav-link" href="<?php echo site_url('dash/#!dashboard')?>"> <span class="fa fa-home"></span> Dashboard</a> </li>
+                            <li class="nav-item" id="report"> <a class="nav-link" href="<?php echo site_url('report/#!report')?>"> <span class="fa fa-phone"></span> Laporan Emergency</a> </li>
+                            <!--<li class="nav-item" id=""> <a class="nav-link" href="#"> <span class="fa fa-sticky-note"></span> Log</a> </li>-->
                         </ul>
-                        <!--                        <ul class="navbar-nav ml-auto">
-                                                    <li class="nav-item"> <a class="nav-link" href="#">Services</a> </li>
-                                                    <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
-                                                    <li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>-->
-                        <!--</ul>--> 
                         <a class="btn btn-outline-danger navbar-btn ml-md-2"><i class="fa fa-sign-out"></i> Sign Out</a>
                     </div>
                 </div>
@@ -46,7 +41,7 @@ and open the template in the editor.
                 var url = window.location.href;
                 var id = url.split('!');
                 var getActive = id[1];
-                $(getActive).addClass("active");
-                $(getActive).css("active");
+                $("#" + getActive).addClass("active");
+                $("#" + getActive).css("active");
             </script>
         </div>

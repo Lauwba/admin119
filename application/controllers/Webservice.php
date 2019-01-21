@@ -76,9 +76,8 @@ class Webservice extends CI_Controller {
         $file_path = "./assets/upload/";
         $data['response'] = array();
         $response = array();
-
-        $id = $this->input->post("id");
-        $ktp = $this->input->post("noktp");
+        
+        $ktp = $this->input->post("noKTP");
         $pos = $this->input->post("posisi");
         $jml = $this->input->post("jumlah_korban");
         $stts = $this->input->post("status_korban");
@@ -90,15 +89,17 @@ class Webservice extends CI_Controller {
             $ret = TRUE;
 
             $objectData = array(
-                'id' => $id,
-                'noktp' => $ktp,
+                'nik' => $ktp,
                 'posisi' => $pos,
                 'jumlah_korban' => $jml,
                 'status_korban' => $stts,
                 'gambar' => $filename,
-                'kondisi_korban' => $kondisi
+                'kondisi_korban' => $kondisi,
+                'tindakan' => '0'
             );
-            $insert = $this->user->insertData('lapor', $objectData);
+
+            $insert = $this->user->insertData('laporan', $objectData);
+
             if ($insert > 0) {
                 $ret = TRUE;
             } else {
