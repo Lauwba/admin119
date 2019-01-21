@@ -4,7 +4,7 @@
 
 <script>
     $(document).ready(function () {
-        var url = "<?php echo site_url('report') ?>";
+        var url = "<?php echo site_url('dashboard/emergency_report') ?>";
         console.log(url);
         $.ajax({
             url: url,
@@ -18,7 +18,7 @@
         });
     });
     setInterval(function () {
-        var url = "<?php echo site_url('report') ?>";
+        var url = "<?php echo site_url('dashboard/emergency_report') ?>";
         console.log(url);
         $.ajax({
             url: url,

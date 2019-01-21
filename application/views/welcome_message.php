@@ -56,16 +56,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     type: 'POST',
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
-                        swal({
-                            title: textStatus,
-                            text: data.message,
-                            type: 'success',
-                            showConfirmButton: true
-                        }).then((result) => {
-                            if (result.value) {
-                                window.location.assign("<?php echo site_url('dash/!#dashboard') ?>");
-                            }
-                        });
+                        if (data.status == "0") {
+                            swal({
+                                title: textStatus,
+                                text: data.message,
+                                type: 'success',
+                                showConfirmButton: true
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.assign("<?php echo site_url('dash/#!dashboard') ?>");
+                                }
+                            });
+                        }else{
+                            swal('Peringatan', data.message, 'warning');
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         swal('Error', textStatus, 'error');

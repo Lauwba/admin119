@@ -11,10 +11,16 @@
  *
  * @author sigit
  */
-class M_admin extends CI_Model{
+class M_admin extends CI_Model {
+
     //put your code here
-    
-    function get($table, $condition){
+
+    function get($table, $condition) {
         return $this->db->get_where($table, $condition)->result();
     }
+
+    function getLastLogin($table, $sortBy, $limit) {
+        return $this->db->query("SELECT * FROM $table ORDER BY $sortBy LIMIT $limit")->result();
+    }
+
 }

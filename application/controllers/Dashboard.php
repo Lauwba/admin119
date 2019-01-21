@@ -10,13 +10,23 @@
  * Description of Dashboard
  *
  * @author sigit
+ * 
  */
 class Dashboard extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        if (empty($this->session->userdata('username'))) {
+            redirect('infront');
+        }
+    }
 
     //put your code here
     function index() {
         $this->load->view('headfoot/header');
-        $this->load->view('dashboard/dashboard');
+        $data['report'] = $this->user->getByTindakan('laporan', 'registrasi', 'nik', 'tindakan=1', 'id DESC', 5);
+        $data['last_login'] = $this->admin->getLastLogin('admin', 'last_login DESC', 10);
+        $this->load->view('dashboard/dashboard', $data);
         $this->load->view('headfoot/footer');
     }
 
@@ -27,8 +37,30 @@ class Dashboard extends CI_Controller {
     }
 
     function emergency_report() {
-        $data['report'] = $this->user->getByTindakan('laporan', 'registrasi', 'nik', 'tindakan=0');
+        $data['report'] = $this->user->getByTindakan('laporan', 'registrasi', 'nik', 'tindakan=0', 'id DESC', NULL);
         $this->load->view('dashboard/emergency_page', $data);
+    }
+
+    function update_status() {
+        $id = $this->input->post('id');
+        $data = array('tindakan' => '1');
+        $condition = array('id' => $id);
+
+        $stts = $this->user->updateLaporan('laporan', $data, $condition);
+
+        $reponse = array();
+
+        if ($stts > 0) {
+            $reponse['status'] = 0;
+            $reponse['message'] = "Laporan berhasil diperbaharui";
+
+            echo json_encode($reponse);
+        } else {
+            $reponse['status'] = 1;
+            $reponse['message'] = "Terjadi Kesalahan Saat Memperbaharui Laporan";
+
+            echo json_encode($reponse);
+        }
     }
 
 }

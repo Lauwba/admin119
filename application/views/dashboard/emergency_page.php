@@ -8,7 +8,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card text-white mb-3">
-                        <div class="card-header  bg-danger">Dilaporan Oleh : <?php echo $r->nama ?> [<?php echo $r->nik ?>]</div>
+                        <div class="card-header  bg-danger">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-12">
+                                    Dilaporan Oleh : <?php echo $r->nama ?> [<?php echo $r->nik ?>]
+                                </div>
+                                <div class="col-md-3 col-sm-12 pr-4">
+                                    <a class="btn btn-success" onclick="return updateData('<?php echo $r->id ?>')"><span class="fa fa-check"></span> Tandai Telah Ditindak Lanjut</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body text-dark">
                             <div class="row border p-3 m-1">
                                 <div class="col-md-6">
@@ -76,23 +85,46 @@
 </div>
 
 <script>
-    function openMaps(lat, lng) {
-        var url = "<?php echo site_url('dashboard/maps') ?>" + "?lat=" + lat + "&lng=" + lng;
-        var disp_setting = "toolbar=no,location=no,";
-        disp_setting += "directories=no,menubar=no,";
-        disp_setting += "scrollbars=yes,width=650, height=425, left=100, top=25";
-        window.open(url, "Lokasi", disp_setting);
-    }
-    $(document).ready(function () {
-        var url = "<?php echo site_url('dashboard/maps/-7.7520206/110.4892787') ?>";
-        $.ajax({
-            url: url,
-            success: function (data, textStatus, jqXHR) {
-                //                document.getElementById("map").innerHTML = data;
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-
+    function updateData(id) {
+        swal({
+            title: "Konfirmasi",
+            text: "Apakah Anda Yakin Ingin Mengupdate Laporan ini ?",
+            type: 'question',
+            showConfirmButton: true,
+            showCancelButton: true
+        }).then((result) => {
+            if (result.value) {
+                doUpdate(id);
             }
         });
-    });
+    }
+
+    function doUpdate(id) {
+        var url = "<?php echo site_url('dashboard/update_status') ?>";
+        $.ajax({
+            url: url,
+            data: {'id': id},
+            type: 'POST',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                if (data.status == '0') {
+                    swal({
+                        title: textStatus,
+                        text: data.message,
+                        type: 'success',
+                        showConfirmButton: true
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    swal("peringatan", data.message, 'warning');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                swal('Kesalahan', textStatus, 'error')
+            }
+        });
+    }
 </script>
