@@ -19,8 +19,6 @@ class Welcome extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
- 
-
     public function index() {
         $this->load->view('welcome_message');
     }
@@ -39,6 +37,11 @@ class Welcome extends CI_Controller {
             $sessionData = array('username' => $username, 'nama' => $getBcrypt[0]->nama);
             $this->session->set_userdata($sessionData);
 
+            //update last_login
+
+            $data = array('last_login' => date('Y-m-d H:i:s'));
+            $this->admin->updateLastLogin('admin', $data, $condition);
+            
             $response['status'] = 0;
             $response['message'] = "Credentials Valid";
             echo json_encode($response);

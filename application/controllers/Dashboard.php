@@ -41,6 +41,17 @@ class Dashboard extends CI_Controller {
         $this->load->view('dashboard/emergency_page', $data);
     }
 
+    function get_count() {
+//    public function getQuery($prefix, $table, $condition, $sortBy) {
+        $res = $this->user->getQuery("COUNT(*) as not_response", "laporan", "tindakan=0", "id DESC");
+        $data = array();
+        foreach ($res as $key => $value) {
+            $data['not_reponse'] = $value->not_response;
+        }
+
+        echo json_encode($data);
+    }
+
     function update_status() {
         $id = $this->input->post('id');
         $data = array('tindakan' => '1');

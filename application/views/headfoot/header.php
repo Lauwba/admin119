@@ -30,7 +30,7 @@ and open the template in the editor.
                     <div class="collapse navbar-collapse" id="navbar5">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item" id="dashboard"> <a class="nav-link" href="<?php echo site_url('dash/#!dashboard') ?>"> <span class="fa fa-home"></span> Dashboard</a> </li>
-                            <li class="nav-item" id="report"> <a class="nav-link" href="<?php echo site_url('report-received/#!report') ?>"> <span class="fa fa-phone"></span> Laporan Emergency</a> </li>
+                            <li class="nav-item" id="report"> <a class="nav-link" href="<?php echo site_url('report-received/#!report') ?>"> <span class="fa fa-phone"></span> Laporan Emergency <span class="badge badge-danger" id="jumlah-masuk">0</span></a></li>
                             <!--<li class="nav-item" id=""> <a class="nav-link" href="#"> <span class="fa fa-sticky-note"></span> Log</a> </li>-->
                         </ul>
                         <a class="btn btn-outline-danger navbar-btn ml-md-2" href="<?php echo site_url('sign-out'); ?>"><i class="fa fa-sign-out"></i> Sign Out</a>

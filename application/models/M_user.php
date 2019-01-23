@@ -18,6 +18,10 @@ class M_user extends CI_Model {
         return $this->db->get($table)->result();
     }
 
+    public function getQuery($prefix, $table, $condition, $sortBy) {
+        return $this->db->query("SELECT $prefix FROM $table WHERE $condition ORDER BY $sortBy")->result();
+    }
+
     public function getByTindakan($table1, $table2, $id, $condition, $sortBy, $limit) {
         if (empty($limit)) {
             return $this->db->query("SELECT * FROM $table1 INNER JOIN $table2 ON $table1.$id=$table2.$id WHERE $condition ORDER BY $sortBy")->result();

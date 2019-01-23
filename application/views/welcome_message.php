@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <title>119 Administrator Pages</title>
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url() ?>assets/js/jquery-1.12.4.js" ></script>
         <script src="<?php echo base_url() ?>assets/js/sweetalert2.all.js"></script>
         <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
     </head>

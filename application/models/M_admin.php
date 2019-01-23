@@ -23,4 +23,10 @@ class M_admin extends CI_Model {
         return $this->db->query("SELECT * FROM $table ORDER BY $sortBy LIMIT $limit")->result();
     }
 
+    function updateLastLogin($table, $data, $condition) {
+        $this->db->where($condition);
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
+
 }
